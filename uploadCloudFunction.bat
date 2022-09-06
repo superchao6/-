@@ -1,0 +1,1 @@
+"E:\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-7gscl6ffc039ac12 --n quickstartFunctions --r --project "C:\Users\44398\Desktop\face_app" --report_first --report

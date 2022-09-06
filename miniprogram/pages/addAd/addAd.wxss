@@ -1,0 +1,4 @@
+/* pages/addAd/addAd.wxss */
+.avatar{
+    padding-left: 300rpx;
+}

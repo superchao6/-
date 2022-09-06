@@ -1,0 +1,80 @@
+<!-- 显示头像 -->
+<view class="userinfo">
+        <image class="userinfo-avatar" src="{{massage.fileList[0].url}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{massage.name}}</text>
+</view>
+
+<van-popup
+show="{{ show }}"
+position="bottom"
+bind:close="onClose"
+>
+    <van-datetime-picker
+    type="time"
+    value="{{ time }}"
+    bind:confirm="set_time"
+    bind:cancel="onClose"
+    />
+</van-popup>
+
+<view>
+
+    <button style="width: 100%;" class="widget" session-from="weapp" bindtap="change_mode">
+        <text class="widget__name">切换模式</text>
+        <image class="widget__arrow" src="../../images/arrow.png" background-size="cover" />
+        <view class="widget__line"></view>
+    </button>
+
+    <!-- 判断是否位管理员，是否显示设置时间模块 -->
+    <button wx:if="{{massage.administrators}}" style="width: 100%;" class="widget" bindtap="set_time_button" session-from="weapp">
+        <text class="widget__name">时间设置</text>
+        <image class="widget__arrow" src="../../images/arrow.png" background-size="cover" />
+        <view class="widget__line"></view>
+    </button>
+
+    <!-- 判断是否位高级管理员，是否显示管理员设置模块 -->
+    <button wx:if="{{massage.senior_administrators}}" style="width: 100%;" class="widget" bindtap="change_administrators" session-from="weapp">
+        <text class="widget__name">添加管理</text>
+        <image class="widget__arrow" src="../../images/arrow.png" background-size="cover" />
+        <view class="widget__line"></view>
+    </button>
+
+    <!-- 判断是否为管理员，是否显示导出打卡情况 -->
+    <button wx:if="{{massage.administrators}}" style="width: 100%;" class="widget" bindtap="get_file" session-from="weapp">
+        <text class="widget__name">打卡情况</text>
+        <image class="widget__arrow" src="../../images/arrow.png" background-size="cover" />
+        <view class="widget__line"></view>
+    </button>
+    <!-- 编辑资料按钮 -->
+    <button bindtap="change_massage" style="width: 100%;" class="widget">
+        <text class="widget__name">编辑资料</text>
+        <image class="widget__arrow" src="../../images/arrow.png" background-size="cover" />
+        <view class="widget__line"></view>
+    </button>
+    <!-- 联系我们按钮 -->
+    <button style="width: 100%;" class="widget" open-type='contact' session-from="weapp">
+        <text class="widget__name">联系我们</text>
+        <image class="widget__arrow" src="../../images/arrow.png" background-size="cover" />
+        <view class="widget__line"></view>
+    </button>
+    <!-- 分享好友按钮 -->
+    <button style="width: 100%;" class="widget" open-type='share' session-from="weapp">
+        <text class="widget__name">分享好友</text>
+        <image class="widget__arrow" src="../../images/arrow.png" background-size="cover" />
+        <view class="widget__line"></view>
+    </button>
+    <!-- 意见反馈按钮 -->
+    <button style="width: 100%;" class="widget" open-type="feedback" session-from="weapp">
+        <text class="widget__name">意见反馈</text>
+        <image class="widget__arrow" src="../../images/arrow.png" background-size="cover" />
+        <view class="widget__line"></view>
+    </button>
+</view>
+
+<van-action-sheet
+  show="{{ mode_show }}"
+  actions="{{ mode_actions }}"
+  round 
+  bind:close="onClose"
+  bind:select="onSelect_mode"
+/>

@@ -1,0 +1,18 @@
+.avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.avatar_image {
+    width: 220rpx;
+    height: 220rpx;
+    margin: 40rpx;
+    border-radius: 50%;
+}
+.widget_line{
+    content: " ";
+    left: 20px;
+    right: 20px;
+    height: 1rpx;
+    background-color: #DFDFDF;
+}

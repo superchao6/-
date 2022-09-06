@@ -1,0 +1,7 @@
+{
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "van-calendar": "../../miniprogram_npm/@vant/weapp/calendar/index",
+        "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index"
+    }
+}

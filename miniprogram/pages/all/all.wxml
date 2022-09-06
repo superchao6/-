@@ -1,0 +1,162 @@
+<!--pages/all/all.wxml-->
+<van-search 
+value="{{ value }}" 
+placeholder="请输入姓名" 
+input-align="center"
+bind:search="search"
+/>
+<!-- 数据导出 -->
+<button plain='true' class="circle" bindtap="out_excel">
+  <image mode='aspectFill' src='cloud://cloud1-7gscl6ffc039ac12.636c-cloud1-7gscl6ffc039ac12-1312903874/out.png' class='image'></image>
+</button>
+
+<block wx:if='{{this_mode == "考勤模式"}}'>
+    <!-- 粘性布局----标题 -->
+    <van-sticky>
+        <view class="title_box">
+            <view class="little_box" >姓名</view>
+            <view class="little_box">时间</view>
+            <view class="little_box">体温</view>
+            <view class="little_box">其他</view>
+        </view>
+    </van-sticky>
+    <!-- 数据显示 -->
+    <view class="box" wx:for="{{massage_all}}" wx:key="index" bind:tap="click_people" data-index="{{index}}">
+        <view class="little_box" >{{massage_all[index].name}}</view>
+        <view class="little_box">{{massage_all[index].info[0].time}}</view>
+        <view class="little_box">{{massage_all[index].info[0].temperature}}</view>
+        <view class="little_box">{{massage_all[index].sex}}</view>
+    </view>
+</block>
+<block wx:elif='{{this_mode == "出入模式"}}'>
+    <!-- 粘性布局----标题 -->
+    <van-sticky>
+        <view class="title_box">
+            <view class="little_box" >姓名</view>
+            <view class="little_box">日期</view>
+            <view class="little_box">时间</view>
+            <view class="little_box">出入</view>
+        </view>
+    </van-sticky>
+    <!-- 数据显示 -->
+    <view class="box" wx:for="{{massage_all}}" wx:key="index" bind:tap="click_people" data-index="{{index}}">
+        <view class="little_box" >{{massage_all[index].name}}</view>
+        <view class="little_box">{{massage_all[index].IO[0].day}}</view>
+        <view class="little_box">{{massage_all[index].IO[0].date}}</view>
+        <view class="little_box">{{massage_all[index].IO[0].flag}}</view>
+    </view>
+</block>
+
+<!-- 考勤模式 -->
+<van-popup
+  show="{{show_popup}}"
+  round="{{true}}"
+  position="bottom"
+  bind:close="onClose"
+>
+    <van-divider hairline></van-divider>
+    <van-image
+    class="avatar"
+    round
+    lazy-load
+    width="150rpx"
+    height="150rpx"
+    fit="fill"
+    src="{{massage_all[click_index].fileList[0].url}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="姓名"
+    title-width='4em'
+    placeholder="{{massage_all[click_index].name}}"
+    value="{{massage_all[click_index].name}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="时间"
+    title-width='4em'
+    value="{{massage_all[click_index].info[0].time}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="体温"
+    title-width='4em'
+    value="{{massage_all[click_index].info[0].temperature}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="出勤"
+    title-width='4em'
+    value="{{massage_all[click_index].attendance}}"
+    />    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="迟到"
+    title-width='4em'
+    value="{{massage_all[click_index].late}}"
+    />   
+
+    <block wx:if="{{massage_all[click_index].senior_administrators}}">
+        <van-field
+        readonly
+        size = 'large'
+        input-align = 'right'
+        label="管理员"
+        title-width='4em'
+        placeholder="高级管理员"
+        value="高级管理员"
+        />
+    </block>
+    <block wx:elif="{{massage_all[click_index].administrators}}">
+        <van-field
+        readonly
+        size = 'large'
+        input-align = 'right'
+        label="管理员"
+        title-width='4em'
+        placeholder="是"
+        value="是"
+        />
+    </block>
+    <block wx:else>
+        <van-field
+        readonly
+        size = 'large'
+        input-align = 'right'
+        label="管理员"
+        title-width='4em'
+        placeholder="否"
+        value="否"
+        />
+    </block>
+    <van-divider hairline></van-divider>
+</van-popup>
+<!-- 出入模式 -->
+<van-popup
+  show="{{show_2_popup}}"
+  round="{{true}}"
+  position="bottom"
+  bind:close="onClose"
+>
+    <view class="title_box">
+        <view class="little_box">姓名</view>
+        <view class="little_box">日期</view>
+        <view class="little_box">时间</view>
+        <view class="little_box">出入</view>
+    </view>
+    <view class="box" wx:for="{{massage_all[click_index].IO}}" wx:key="index">
+        <view class="little_box" >{{massage_all[click_index].name}}</view>
+        <view class="little_box">{{massage_all[click_index].IO[index].day}}</view>
+        <view class="little_box">{{massage_all[click_index].IO[index].date}}</view>
+        <view class="little_box">{{massage_all[click_index].IO[index].flag}}</view>
+    </view>
+</van-popup>

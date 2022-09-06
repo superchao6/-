@@ -1,0 +1,64 @@
+<!-- <calendar id="calendar" view='week' _vibrate='{{false}}' _startWeek="1" showLunar='{{false}}' binddatechange="choose_date" /> -->
+<block wx:if="{{this_mode == '考勤模式'}}">
+    <van-calendar
+    title="日期"
+    poppable="{{ false }}"
+    min-date="{{ minDate }}"
+    max-date="{{ maxDate }}"
+    row-height="50"
+    show-confirm="{{ false }}"
+    show-mark="{{true}}"
+    show-title="{{true}}"
+    show-subtitle="{{false}}"
+    formatter="{{ formatter }}"
+    class="calendar"
+    bind:select="calender"
+    />
+    <van-divider dashed />
+    <view class="show_box">
+    <view class="name_box">
+        <view class="box1_1">姓名</view>
+        <view class="box2_1">{{massage.name}}</view>
+    </view>
+    <view class="name_box">
+        <view class="box2">出勤情况</view>
+        <view class="box1" wx:if="{{show_index >= 0}}">{{massage.info[show_index].clock_flag}}</view>
+        <view class="box1" wx:else>未打卡</view>
+    </view>
+    <view class="name_box">
+        <view class="box1">打卡时间</view>
+        <view class="box2" wx:if="{{show_index >= 0}}">{{massage.info[show_index].time}}</view>
+        <view class="box2" wx:else>未打卡</view>
+    </view>
+    <view class="name_box">
+        <view class="box2_2">体温情况</view>
+        <view class="box1_2" wx:if="{{show_index >= 0}}">{{massage.info[show_index].temperature}}</view>
+        <view class="box1_2" wx:else>未测试</view>
+    </view>
+    <van-divider dashed />
+    <view class="name_box">
+        <view class="box1_1">出勤天数</view>
+        <view class="box2_1">{{massage.attendance}}</view>
+    </view>
+    <view class="name_box">
+        <view class="box2_2">缺勤天数</view>
+        <view class="box1_2">{{massage.late}}</view>
+    </view>
+    </view> 
+</block>
+<block wx:else="{{this_mode == '出入模式'}}">
+    <view class="title_box">
+        <view class="little_box">姓名</view>
+        <view class="little_box">日期</view>
+        <view class="little_box">时间</view>
+        <view class="little_box">体温</view>
+        <view class="little_box">出入</view>
+    </view>
+    <view class="box" wx:for="{{massage.IO}}" wx:key="index">
+        <view class="little_box" >{{massage.name}}</view>
+        <view class="little_box">{{massage.IO[index].day}}</view>
+        <view class="little_box">{{massage.IO[index].date}}</view>
+        <view class="little_box">{{massage.IO[index].temperature}}</view>
+        <view class="little_box">{{massage.IO[index].flag}}</view>
+    </view>
+</block>

@@ -1,0 +1,58 @@
+@import '../../miniprogram_npm/@vant/weapp/common/index.wxss';
+.page{
+    width:100%;
+    height:100%;
+    /* overflow: hidden; */
+}
+.background_pic{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.air_box0{
+    margin-top: 18%;
+    margin-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.dunpai_box{
+    height: 200rpx;
+    width: 100%;
+}
+.title_box{
+    margin-top: 40rpx;
+    display: flex;
+    text-align:center;
+    align-items:center;
+    justify-content: center;
+    font-size: medium;
+}
+.air_box1{
+    margin-top: 20px;
+}
+.box{
+    display: flex;
+    justify-content:center;
+    width: 100%;
+}
+.log_on_button{
+    width: 35%;
+    margin-top: 30px;
+}
+.register_button{
+    width: 35%;
+    margin-top: 30px;
+    margin-right: 10%;
+}
+.input_box{
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
+    /* border: 3rpx solid #faca82; */
+    width: 82%;
+    border-radius: 30rpx;
+    margin:0 auto
+}

@@ -1,0 +1,249 @@
+<!--pages/addAd/addAd.wxml-->
+<van-search 
+value="{{ value }}" 
+placeholder="请输入姓名" 
+input-align="center"
+bind:search="search"
+/>
+
+<van-divider contentPosition="center">管理员</van-divider>
+
+<van-grid column-num="4"  icon-size="48" square="{{true}}">
+  <van-grid-item wx:for="{{massage_ad}}" wx:key="index" icon="{{massage_ad[index].fileList[0].url}}" text="{{massage_ad[index].name}}" bind:click="click_people" data-index="{{index}}" data-value="ad"/>
+</van-grid>
+
+<van-divider contentPosition="center">所有人</van-divider>
+
+<van-grid column-num="4"  icon-size="48" square="{{true}}">
+  <van-grid-item wx:for="{{massage}}" wx:key="index" icon="{{massage[index].fileList[0].url}}" text="{{massage[index].name}}" bind:click="click_people" data-index="{{index}}" data-value="nad"/>
+</van-grid>
+
+<van-popup
+  show="{{show_ad_popup}}"
+  round="{{true}}"
+  position="bottom"
+  bind:close="onClose"
+>
+    <van-divider hairline></van-divider>
+    <van-image
+    class="avatar"
+    round
+    lazy-load
+    width="150rpx"
+    height="150rpx"
+    fit="fill"
+    src="{{massage_ad[click_index].fileList[0].url}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="姓名"
+    title-width='4em'
+    placeholder="{{massage_ad[click_index].name}}"
+    value="{{massage_ad[click_index].name}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="人脸绑定"
+    title-width='4em'
+    value="{{massage_ad[click_index].picture_flag}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="性别"
+    title-width='4em'
+    placeholder="{{massage_ad[click_index].sex}}"
+    value="{{massage_ad[click_index].sex}}"
+    />
+    <block wx:if="{{massage_ad[click_index].senior_administrators}}">
+        <van-field
+        readonly
+        size = 'large'
+        input-align = 'right'
+        label="管理员"
+        title-width='4em'
+        placeholder="高级管理员"
+        value="高级管理员"
+        />
+    </block>
+    <block wx:elif="{{massage_ad[click_index].administrators}}">
+        <van-field
+        readonly
+        size = 'large'
+        input-align = 'right'
+        right-icon="arrow"
+        label="管理员"
+        title-width='4em'
+        placeholder="是"
+        value="是"
+        bind:click-icon="click_administrators"
+        bind:click-input="click_administrators"
+        data-value="ad"
+        />
+    </block>
+    <block wx:else>
+        <van-field
+        readonly
+        size = 'large'
+        input-align = 'right'
+        right-icon="arrow"
+        label="管理员"
+        title-width='4em'
+        placeholder="否"
+        value="否"
+        bind:click-icon="click_administrators"
+        bind:click-input="click_administrators"
+        data-value="ad"
+        />
+    </block>
+
+    <van-divider hairline></van-divider>
+</van-popup>
+
+<van-popup
+  show="{{ show_set_ad }}"
+  round
+  close-on-click-overlay="{{true}}"
+  position="bottom"
+  bind:close="onClose"
+>
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'center'
+    placeholder="设置管理员"
+    value="设置管理员"
+    bind:click-input="set_administrators"
+    data-value="{{true}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'center'
+    placeholder="取消管理员"
+    value="取消管理员"
+    bind:click-input="set_administrators"
+    data-value="{{false}}"
+    />
+    <van-divider hairline></van-divider>
+</van-popup>
+
+<van-popup
+  show="{{show_nad_popup}}"
+  round="{{true}}"
+  position="bottom"
+  bind:close="onClose"
+>
+    <van-divider hairline></van-divider>
+    <van-image
+    class="avatar"
+    round
+    lazy-load
+    width="150rpx"
+    height="150rpx"
+    fit="fill"
+    src="{{massage[click_index].fileList[0].url}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="姓名"
+    title-width='4em'
+    placeholder="{{massage[click_index].name}}"
+    value="{{massage[click_index].name}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="人脸绑定"
+    title-width='4em'
+    value="{{massage[click_index].picture_flag}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    label="性别"
+    title-width='4em'
+    placeholder="{{massage[click_index].sex}}"
+    value="{{massage[click_index].sex}}"
+    />
+    <block wx:if="{{massage[click_index].senior_administrators}}">
+        <van-field
+        readonly
+        size = 'large'
+        input-align = 'right'
+        label="管理员"
+        title-width='4em'
+        placeholder="高级管理员"
+        value="高级管理员"
+        />
+    </block>
+    <block wx:elif="{{massage[click_index].administrators}}">
+        <van-field
+        readonly
+        size = 'large'
+        input-align = 'right'
+        right-icon="arrow"
+        label="管理员"
+        title-width='4em'
+        placeholder="是"
+        value="是"
+        bind:click-icon="click_administrators"
+        bind:click-input="click_administrators"
+        data-value="nad"
+        />
+    </block>
+    <block wx:else>
+        <van-field
+        readonly
+        size = 'large'
+        input-align = 'right'
+        right-icon="arrow"
+        label="管理员"
+        title-width='4em'
+        placeholder="否"
+        value="否"
+        bind:click-icon="click_administrators"
+        bind:click-input="click_administrators"
+        data-value="nad"
+        />
+    </block>
+
+    <van-divider hairline></van-divider>
+</van-popup>
+
+<van-popup
+  show="{{ show_set_nad }}"
+  round
+  close-on-click-overlay="{{true}}"
+  position="bottom"
+  bind:close="onClose"
+>
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'center'
+    placeholder="设置管理员"
+    value="设置管理员"
+    bind:click-input="set_administrators"
+    data-value="{{true}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'center'
+    placeholder="取消管理员"
+    value="取消管理员"
+    bind:click-input="set_administrators"
+    data-value="{{false}}"
+    />
+    <van-divider hairline></van-divider>
+</van-popup>

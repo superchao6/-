@@ -1,0 +1,43 @@
+<!-- 背景图片 -->
+<!-- <image class="background_pic" src="https://636c-cloud1-7gscl6ffc039ac12-1312903874.tcb.qcloud.la/login_background.jpg?sign=b4d98a18adbecd1a4d07161ac94197f4&t=1657700907" style="opacity:0.46"></image> -->
+
+<!-- <image class="background_pic" src="../../images/bg.png" style="opacity:0.9"></image> -->
+<view class="air_box0">
+    <image class="dunpai_box" mode="aspectFit" src="../../images/dunpai.png" style="opacity:1"></image>
+    <view class="title_box">欢迎使用数字哨兵</view>
+</view>
+
+<!-- <van-cell-group inset> -->
+<view class="input_box">
+  <van-field
+    clearable
+    label="账号"
+    title-width='3em'
+    placeholder="请输入账号"
+    bind:input="input_account"
+  />
+  <view class="air_box1"></view>
+  <van-field
+    clearable
+    border="false"
+    password="{{show_password}}"
+    value="{{password}}"
+    label="密码"
+    title-width='3em'
+    right-icon="{{eye}}"
+    placeholder="请输入密码"
+    bind:click-icon="click_icon"
+    bind:input="input_password"
+  />
+</view>
+<!-- </van-cell-group> -->
+
+<view class="box">
+  <view class="register_button">
+    <van-button round type="primary" bind:click="register" size="large">注册</van-button>
+  </view>
+  <view class="log_on_button">
+    <van-button round type="primary" bind:click="log_on" size="large">登录</van-button>
+  </view>
+</view>
+

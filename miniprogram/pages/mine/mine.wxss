@@ -1,0 +1,61 @@
+.userinfo {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    align-items: center;
+    height:180px;
+}
+.get_user_info{
+    margin-top: 70rpx;
+}
+.userinfo-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border-radius: 50%;
+}
+.userinfo-nickname {
+    font-size: large;
+    color: #aaa;
+}
+.widget{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}
+.widget__name{
+    align-items:center;
+    font-size: large;
+    font-weight:lighter;
+    position: absolute;
+    left: 8%;
+}
+.widget__arrow{
+    position: absolute;
+    top: 14px;
+    right: 10%;
+    width: 8px;
+    height: 16px;
+}
+.widget__line{
+    content: " ";
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    right: 20px;
+    height: 1rpx;
+    background-color: #DFDFDF;
+}
+.set_time_picker{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: larger;
+    margin-bottom: 20px;
+}
+.set_time{
+    width: 100%;
+    font-size: larger;
+}

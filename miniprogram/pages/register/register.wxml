@@ -1,0 +1,77 @@
+<form bindsubmit="register">
+    <van-field
+    clearable
+    required
+    name = "account"
+    label="账号"
+    title-width='4em'
+    placeholder="请输入账号"
+    value="{{account}}"
+    bind:blur="input_account"
+    error-message="{{error_massage}}"
+    />
+    <van-field
+    clearable
+    required
+    name="password"
+    password="{{show_password}}"
+    label="密码"
+    title-width='4em'
+    right-icon="{{eye}}"
+    placeholder="请输入密码"
+    bind:click-icon="click_icon"
+    />
+    <van-field
+    clearable
+    required
+    name="password_again"
+    password="{{show_password1}}"
+    label="确认密码"
+    title-width='4em'
+    right-icon="{{eye1}}"
+    placeholder="请输入密码"
+    bind:click-icon="click_icon1"
+    />
+    <van-field
+    clearable
+    required
+    name = "name"
+    label="真实姓名"
+    title-width='4em'
+    placeholder="请输入真实姓名"
+    />
+    
+    <van-field
+    readonly
+    clearable
+    required
+    name = "sex"
+    label="性别"
+    title-width='4em'
+    placeholder="你的性别"
+    value = "{{sex}}"
+    bind:click-input = 'choose_sex'
+    />
+
+    <view class="tips">*此部分信息后期不可修改,请认真填写</view>
+
+    <view class="register_button">
+        <van-button round type="primary" size="large" form-type="submit">注册</van-button>
+    </view>
+</form>
+<view class="back_log_on">
+    <van-button round type="info" size="large" bind:click="back_log">返回登录</van-button>
+</view>
+<view class="back_log_on">
+    <van-button round type="default" size="large" open-type='contact'>联系管理员</van-button>
+</view>
+
+<van-dialog id="van-dialog" />
+
+<van-action-sheet
+    description="请选择性别"
+    show="{{ show_sex }}"
+    actions="{{ actions }}"
+    bind:close="onClose"
+    bind:select="onSelect"
+/>

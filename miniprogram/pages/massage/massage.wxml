@@ -1,0 +1,55 @@
+<!-- <view class="avatar">
+    <image class="avatar_image" mode="cover" src="../../images/xc.jpg"></image>
+</view> -->
+<view class="avatar">
+    <image class="avatar_image" mode="cover" src="{{fileList[0].url}}"></image>
+</view>
+
+<view class="widget_line"></view>
+
+<form bindsubmit="register">
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    name = "name"
+    label="姓名"
+    title-width='4em'
+    placeholder="{{massage.name}}"
+    value="{{massage.name}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    name = "picture"
+    label="人脸绑定"
+    title-width='4em'
+    right-icon="arrow"
+    value="{{massage.picture_flag}}"
+    bind:click-input = "afterRead"
+    bind:click-icon =  "afterRead"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    name = "account"
+    label="账号"
+    title-width='4em'
+    placeholder="{{massage.account}}"
+    value="{{massage.account}}"
+    />
+    <van-field
+    readonly
+    size = 'large'
+    input-align = 'right'
+    name = "sex"
+    label="性别"
+    title-width='4em'
+    placeholder="{{massage.sex}}"
+    value="{{massage.sex}}"
+    />
+</form>
+
+<van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="10" multiple="true" bind:after-read="afterRead" bind:delete="DeletePicture"/>
